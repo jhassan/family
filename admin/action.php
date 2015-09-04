@@ -93,6 +93,13 @@
 			//}
 		break;
 		
+		// Banner Management
+		case "AddBanner":
+		
+		
+		break;
+		
+		
 		// Add Air Lines AddAirLines
 		case "AddAirLines":
 			//if(empty($_POST['air_line_name']) && !empty($_POST['air_line_code']) && !empty($_FILES["fileToUpload"]["name"]))
