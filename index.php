@@ -15,7 +15,7 @@
 								while($row = mysql_fetch_array($result)) {?>
                                 <div class="item <?php if($i == 1) echo "active";?>">
                                 <div class="col-sm-12">
-                                 <img src="admin/images/<?=$row['banner_image']?>" class="girl img-responsive" alt="" />
+                                 <img src="admin/images/<?=$row['banner_image']?>" height="500" class="girl img-responsive" alt="" />
                                 </div>
                                </div>
                             <?php $i++; }?>
