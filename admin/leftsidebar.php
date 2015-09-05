@@ -24,6 +24,18 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Banners <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="banners">Add Banners</a>
+                                </li>
+                                <li>
+                                    <a href="view_banners">View Banners</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                         <li class="hide">
                             <a href="#"><i class="fa fa-files-o fa-fw"></i>Air Lines<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
