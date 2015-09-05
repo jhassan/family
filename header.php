@@ -68,3 +68,4 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
+    <?php require_once('admin/functions.php'); ?>
