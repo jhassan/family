@@ -22,6 +22,30 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <style type="text/css">
+
+/* For pagination function. */
+ul.pagination {
+    text-align:center;
+    color:#FE980F;
+}
+ul.pagination li {
+    display:inline;
+    padding:0 3px;
+}
+ul.pagination a {
+    color:#000;
+    display:inline-block;
+    padding:5px 10px;
+    border:1px solid #FE980F;
+    text-decoration:none;
+}
+ul.pagination a:hover,
+ul.pagination a.current {
+    background:#FE980F;
+    color:#fff;
+}
+</style>
 </head><!--/head-->
 
 <body>
@@ -68,4 +92,4 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-    <?php require_once('admin/functions.php'); ?>
+    <?php require_once('front_functions.php'); ?>
