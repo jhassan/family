@@ -31,6 +31,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Father Name</th>
                                             <th>Mother Name</th>
@@ -47,6 +48,7 @@
 																																												if(empty($row['dob']) || $row['dob'] == "0000-00-00") $row['dob'] = "N/A";
 																																												?>
                                         <tr class="odd gradeX" id="DelID_<?php echo $row['user_id'];?>">
+                                            <td class="center"><?php echo $row['user_id'];?></td>
                                             <td class="center"><?php echo $row['user_name'];?></td>
                                             <td class="left"><?php echo MemberName($row['father_id']);?></td>
                                             <td class="center"><?php echo MemberName($row['mother_id']);?></td>

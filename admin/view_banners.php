@@ -31,7 +31,6 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
                                             <th>Banners</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -43,12 +42,12 @@
                                     	$SQL = "SELECT * FROM tblbanner ORDER BY banner_id DESC";			
 																																												$result = MySQLQuery($SQL);
 																																												while($row = mysql_fetch_array($result)) { // ,MYSQL_ASSOC
-																																												if(empty($row['dob']) || $row['dob'] == "0000-00-00") $row['dob'] = "N/A";
+																																												$banner_status = $row['banner_status'];
+																																												if($banner_status == 1) $banner_status = "Enable"; else $banner_status = "Disable"; 
 																																												?>
                                         <tr class="odd gradeX" id="DelID_<?php echo $row['user_id'];?>">
-                                            <td class="center"><?php echo $row['banner_id'];?></td>
-                                            <td class="left"><?php echo $row['banner_image'];?></td>
-                                            <td class="center"><?php echo $row['banner_status'];?></td>
+                                            <td class="left"><img src="images/<?php echo $row['banner_image'];?>" height="30" width="60" alt="Banner Image"></td>
+                                            <td class="center"><?php echo $banner_status;?></td>
                                             <td class="center"><a href="banners?id=<?php echo $row['banner_id'];?>"><img height="20" width="20" src="../images/edit.png" alt="Edit"></a>&nbsp;&nbsp;&nbsp;<a id="<?php echo $row['banner_id'];?>" class='clsDelete'><img data-target="#myModal" data-toggle="modal" src="../images/delete.png" height="16" width="16" alt="Delete"></a></td>
                                         </tr>
 									<?php } ?>	<?php ?>

@@ -6,6 +6,7 @@
 	$Where = " banner_id = '".(int)$GetID."'";
 	$GetRow = GetRecord("tblbanner", $Where);
 	$banner_image = $GetRow['banner_image'];
+	$banner_status = $GetRow['banner_status'];
 	}
 ?>
 
@@ -37,7 +38,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="action.php" id="myForm" method="post">
+                                    <form role="form" action="action.php" id="myForm" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="action" id="action" value="AddBanner" />
                                         <input type="hidden" name="nBannerID" id="nBannerID" value="<?php echo $GetID; ?>" />
                                             <div class="form-group m-r-15 m-t-10 col-lg-3 p-l-0">
@@ -46,12 +47,12 @@
                                             </div>
 											<div class="form-group m-r-15 m-t-10 col-lg-3 p-l-0">
                                                 <label>Status</label>
-                                                <input type="checkbox" name="status" id="status" class="" 
-                                                value="<?php if($GetID){echo $status=1;}else{echo $status=0;}?>">
+                                                <input type="checkbox" name="status" id="status" class="" value="" 
+																																																<?php if($banner_status == 1){echo $banner_status="checked";}else{echo $banner_status="";}?>>
                                             </div>                                            
                                             <div class="form-group col-lg-3 m-t-10">
 													<?php if(!empty($GetID)) {  ?>
-	                                                    <img src="images/<?php echo $banner_image;?>" height="16" width="16" alt="Banner Image">
+	                                                    <img src="images/<?php echo $banner_image;?>" height="30" width="30" alt="Banner Image">
                                                     <?php } ?>
                                             </div>
                                             <div class="clear"></div>
