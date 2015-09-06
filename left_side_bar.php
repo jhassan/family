@@ -1,28 +1,35 @@
+<?php require_once('front_functions.php');?>
 <div class="col-sm-3">
 					<div class="left-sidebar">
 						<h2>Category</h2>
+                        	
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							<div class="panel panel-default">
 								<div class="panel-heading">
+                                <?php
+                                $SQL = "SELECT * FROM our_family WHERE user_type = 1";			
+								$result = MySQLQuery($SQL);
+								$i = 1;
+								while($row = mysql_fetch_array($result)) {
+							?>
 									<h4 class="panel-title">
 										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Muhammad Siddiq Ansari
+											<?php echo $row['user_name'];?>
 										</a>
 									</h4>
-								</div>
-								<div id="sportswear" class="panel-collapse collapse">
+                                    <div id="sportswear" class="panel-collapse collapse">
 									<div class="panel-body" style="padding-top: 0px;">
-         	<h5 style="padding-left: 19px;">Kausar Parveen</h5>
+						         	<h5 style="padding-left: 19px;"><?php echo $row['spous_id'];?></h5>
 										<ul>
-											<li><a href="#">Nike </a></li>
-											<li><a href="#">Under Armour </a></li>
-											<li><a href="#">Adidas </a></li>
-											<li><a href="#">Puma</a></li>
-											<li><a href="#">ASICS </a></li>
+											<li><a href="#"><?php echo FamilyMember($row['father_id']);?></a></li>
 										</ul>
 									</div>
 								</div>
+							<?php $i++; }?>
+
+								</div>
+								
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">

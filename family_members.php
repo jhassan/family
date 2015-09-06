@@ -1,5 +1,4 @@
 <?php require_once('header.php');?>
-	
 	<section>
 		<div class="container">
 			<div class="row">
@@ -7,15 +6,45 @@
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Features Items</h2>
-						<div class="col-sm-4">
+						<h2 class="title text-center">Family Members</h2>
+
+     
+     <?php
+     			$page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
+								if ($page <= 0) $page = 1;
+								
+								$per_page = 9; // Set how many records do you want to display per page.
+								
+								$startpoint = ($page * $per_page) - $per_page;
+								
+								$statement = "our_family ORDER BY `user_id` ASC"; // Change `records` according to your table name.
+									
+								//$results = mysqli_query($conDB,"SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}");
+								
+								$SQL = "SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}";
+								$results = MySQLQuery($SQL);
+								$i = 1;
+								
+								if (mysql_num_rows($results) != 0) {
+												
+									// displaying records.
+												while ($row = mysql_fetch_array($results)) {
+												if(!empty($row['user_image'])){
+												$user_image =  $row['user_image'];
+											}else{
+												if($row['user_type'] == 1)
+													$user_image = 'male.jpg';
+												else
+													$user_image = 'female.png';	
+											}	?>											
+												<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="images/home/product1.jpg" alt="" />
-											<h2>Muhammad Siddiq Ansari</h2>
-											<p>Haji Ahmad Hassan</p>
-           <p>Musamat Nazeeran Bagum</p>
+											<img src="admin/images/<?php echo $user_image; ?>" alt="" height="250" />
+											<h2><?php echo MemberName($row['user_id']);?></h2>
+											<p><?php echo MemberName($row['father_id']);?></p>
+								           <p><?php echo MemberName($row['mother_id']);?></p>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
@@ -26,134 +55,25 @@
 								</div>
 							</div>
 						</div>
+						<?php if($i%3 == 0) {?>
+     <div class="clearfix"></div>
+     
+     <?php } $i++;
+												} // end while
+									
+								} else {
+													echo "No records are found.";
+								}
+								
+									// displaying paginaiton.
+								echo pagination($statement,$per_page,$page,$url='index?');
+					
+					?>
 
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/product2.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/product3.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/product4.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/new.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/product5.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/sale.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/product6.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
+						
+						
+						
+						
 						
 					</div><!--features_items-->
 					

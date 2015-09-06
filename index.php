@@ -15,7 +15,7 @@
 								while($row = mysql_fetch_array($result)) {?>
                                 <div class="item <?php if($i == 1) echo "active";?>">
                                 <div class="col-sm-12">
-                                 <img src="admin/images/<?=$row['banner_image']?>" height="500" class="girl img-responsive" alt="" />
+                                <img src="admin/images/<?=$row['banner_image']?>" height="500" class="girl img-responsive" alt="" />
                                 </div>
                                </div>
                             <?php $i++; }?>
@@ -43,23 +43,38 @@
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Features Items</h2>
-                        <?php 
-								$SQL = "SELECT * FROM our_family";
-								$result = MySQLQuery($SQL);
+						<h2 class="title text-center">Family Members</h2>
+
+     
+     <?php
+     			$page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
+								if ($page <= 0) $page = 1;
+								
+								$per_page = 9; // Set how many records do you want to display per page.
+								
+								$startpoint = ($page * $per_page) - $per_page;
+								
+								$statement = "our_family ORDER BY `user_id` ASC"; // Change `records` according to your table name.
+									
+								//$results = mysqli_query($conDB,"SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}");
+								
+								$SQL = "SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}";
+								$results = MySQLQuery($SQL);
 								$i = 1;
-								while($row = mysql_fetch_array($result)) {
-									if(!empty($row['user_image'])){
-										$user_image =  $row['user_image'];
-									}else{
-										if($row['user_type'] == 1)
-											$user_image = 'male.jpg';
-										else
-											$user_image = 'female.png';	
-									}
-									?>
-                                
-						<div class="col-sm-4">
+								
+								if (mysql_num_rows($results) != 0) {
+												
+									// displaying records.
+												while ($row = mysql_fetch_array($results)) {
+												if(!empty($row['user_image'])){
+												$user_image =  $row['user_image'];
+											}else{
+												if($row['user_type'] == 1)
+													$user_image = 'male.jpg';
+												else
+													$user_image = 'female.png';	
+											}	?>											
+												<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
@@ -77,10 +92,20 @@
 								</div>
 							</div>
 						</div>
-                        <?php if($i%3 == 0) {?>
-                        <div class="clearfix"></div>
-                        
-                        <?php } $i++; } ?>
+						<?php if($i%3 == 0) {?>
+     <div class="clearfix"></div>
+     
+     <?php } $i++;
+												} // end while
+									
+								} else {
+													echo "No records are found.";
+								}
+								
+									// displaying paginaiton.
+								echo pagination($statement,$per_page,$page,$url='index?');
+					
+					?>
 
 						
 						
