@@ -43,8 +43,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="item">	
+								</div><div class="item">	
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
@@ -85,6 +84,7 @@
 										</div>
 									</div>
 								</div>
+								
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
 								<i class="fa fa-angle-left"></i>

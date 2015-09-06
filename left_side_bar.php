@@ -1,119 +1,44 @@
 <?php require_once('front_functions.php');?>
 <div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Category</h2>
+						<h2>Each Family</h2>
                         	
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
+                        <?php
+							$SQL = "SELECT * FROM our_family WHERE user_type = 1 AND spous_id <> 0";			
+							$result = MySQLQuery($SQL);
+							$i = 1;
+							while($row = mysql_fetch_array($result)) {
+						?>
+                        <div class="panel panel-default">
 								<div class="panel-heading">
-                                <?php
-                                $SQL = "SELECT * FROM our_family WHERE user_type = 1";			
-								$result = MySQLQuery($SQL);
-								$i = 1;
-								while($row = mysql_fetch_array($result)) {
-							?>
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+										<a data-toggle="collapse" data-parent="#accordian" href="#mens_<?php echo $i;?>">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											<?php echo $row['user_name'];?>
+											<a href="member?id=<?php echo $row['user_id'];?>"><?php echo $row['user_name'];?></a>
 										</a>
 									</h4>
-                                    <div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body" style="padding-top: 0px;">
-						         	<h5 style="padding-left: 19px;"><?php echo $row['spous_id'];?></h5>
+								</div>
+								<div id="mens_<?php echo $i;?>" class="panel-collapse collapse">
+									<div class="panel-body">
+                                    <a href="member?id=<?php echo $row['spous_id'];?>"><h5 style="padding-left: 19px; color:#000;"><?php echo MemberName($row['spous_id']);?></h5></a>
 										<ul>
-											<li><a href="#"><?php echo FamilyMember($row['father_id']);?></a></li>
+                                        	<?php
+												$SQL1 = "SELECT * FROM our_family WHERE father_id = '".$row['user_id']."'";			
+												$result1 = MySQLQuery($SQL1);
+												while($row1 = mysql_fetch_array($result1)) {
+											?>
+												<li><a href="member?id=<?php echo $row1['user_id'];?>"><?php echo MemberName($row1['user_id']);?></a></li>
+                                            <?php } ?>
 										</ul>
 									</div>
 								</div>
-							<?php $i++; }?>
+							</div>
+                        <?php $i++; }?>
+                        
+                        
+                        
 
-								</div>
-								
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Mens
-										</a>
-									</h4>
-								</div>
-								<div id="mens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Fendi</a></li>
-											<li><a href="#">Guess</a></li>
-											<li><a href="#">Valentino</a></li>
-											<li><a href="#">Dior</a></li>
-											<li><a href="#">Versace</a></li>
-											<li><a href="#">Armani</a></li>
-											<li><a href="#">Prada</a></li>
-											<li><a href="#">Dolce and Gabbana</a></li>
-											<li><a href="#">Chanel</a></li>
-											<li><a href="#">Gucci</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Womens
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Fendi</a></li>
-											<li><a href="#">Guess</a></li>
-											<li><a href="#">Valentino</a></li>
-											<li><a href="#">Dior</a></li>
-											<li><a href="#">Versace</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Kids</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Fashion</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Households</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Interiors</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Clothing</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Bags</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Shoes</a></h4>
-								</div>
-							</div>
 						</div><!--/category-products-->
 						
 						<div class="shipping text-center"><!--shipping-->

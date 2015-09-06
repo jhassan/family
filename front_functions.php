@@ -135,6 +135,24 @@ function pagination($query,$per_page=10,$page=1,$url='?'){
     return $pagination;
 }
 	
+	// the function returns the assocatied array containing
+	// the field name and field value pair for record.
+	//
+	// strTable:		table name.
+	// strCriteria:		where criteria
+	//
+	function GetRecord($strTable, $strCriteria)
+	{
+		$strQuery = "select * from $strTable ";
+
+		if(!empty($strCriteria))
+			$strQuery .= "where $strCriteria;";
+		
+		$nResult = MySQLQuery($strQuery);
+
+		return mysql_fetch_array($nResult);
+	}
+	
 	
 	function MemberName($ID)
 	{

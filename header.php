@@ -77,9 +77,8 @@ ul.pagination a.current {
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index" class="active">Home</a></li>
-        <li><a href="family_members">Family Members</a></li>
-        <li><a href="member">Detail</a></li>
-        <li><a href="family_tree">Family Tree</a></li>
+                                <li><a href="family_members">Family Members</a></li>
+                                <li><a href="family_tree">Family Tree</a></li>
 							</ul>
 						</div>
 					</div>

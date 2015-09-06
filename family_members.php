@@ -13,7 +13,7 @@
      			$page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
 								if ($page <= 0) $page = 1;
 								
-								$per_page = 9; // Set how many records do you want to display per page.
+								$per_page = 12; // Set how many records do you want to display per page.
 								
 								$startpoint = ($page * $per_page) - $per_page;
 								

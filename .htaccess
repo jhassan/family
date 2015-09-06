@@ -5,6 +5,8 @@ RewriteRule ^index$ index.php [L]
 RewriteRule ^index/(.*)$ ^index.php?error=1&%{QUERY_STRING} [R]
 
 RewriteRule ^member$ member.php [L]
+RewriteRule ^member/(.*)$ member.php?id=$1&%{QUERY_STRING} [R]
+
 RewriteRule ^family_members$ family_members.php [L]
 RewriteRule ^family_tree$ family_tree.php [L]
 

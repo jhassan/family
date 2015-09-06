@@ -35,7 +35,7 @@
                                             <th>Name</th>
                                             <th>Father Name</th>
                                             <th>Mother Name</th>
-                                            <th>Date of Birth</th>
+                                            <th>Husband/Wife</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -52,7 +52,7 @@
                                             <td class="center"><?php echo $row['user_name'];?></td>
                                             <td class="left"><?php echo MemberName($row['father_id']);?></td>
                                             <td class="center"><?php echo MemberName($row['mother_id']);?></td>
-                                            <td class="center"><?php echo $row['dob'];?></td>
+                                            <td class="center"><?php echo MemberName($row['spous_id']);?></td>
                                             <td class="center"><a href="users?id=<?php echo $row['user_id'];?>"><img height="16" width="16" src="../images/edit.png" alt="Edit"></a>&nbsp;&nbsp;&nbsp;<a id="<?php echo $row['user_id'];?>" class='clsDelete'><img data-target="#myModal" data-toggle="modal" src="../images/delete.png" height="16" width="16" alt="Delete"></a></td>
                                         </tr>
 									<?php } ?>	<?php ?>
