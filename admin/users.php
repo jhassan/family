@@ -13,6 +13,7 @@
 	$mother_id = $GetRow['mother_id'];
 	$spous_id = $GetRow['spous_id'];
 	$user_image = $GetRow['user_image'];
+	$user_order =  $GetRow['user_order'];
 	}
 ?>
 
@@ -70,6 +71,19 @@
                                             <label>Spous</label>
 																																												<?php TableComboMsSql("our_family", "user_name", "user_id", "", "spous_id", $spous_id, "", "<option value=''>---Select Spous---</option>", "form-control", ""); ?>
                                         </div>
+
+                                        <div class="form-group col-lg-3">
+                                            <label>User Order</label>
+                                            <select name="user_num" id="user_num" class="form-control">
+                                            	<option>---Select Number---</option>
+												<?php 
+													for ($i=1; $i<=15; $i++){
+														echo "<option value=\"$i\">$i</option>\n";
+													}
+												?>
+                                            </select>
+                                                                                                                                                                                </div>
+
                                         <div class="form-group m-r-15 m-t-10 col-lg-3">
                                             <label>Upload Image</label>
                                             <input type="file" name="fileToUpload" id="fileToUpload" class="">

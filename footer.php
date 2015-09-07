@@ -2,78 +2,40 @@
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe2.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe3.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe4.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="images/home/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-						</div>
+					<div class="col-sm-offset-2  col-sm-10">
+						<div class="col-sm-12 pull-left">
+							<?php
+							$SQL = "SELECT * FROM our_family";
+								$results = MySQLQuery($SQL);
+								$row = mysql_fetch_array($results);
+								$i = 1;
+								while ($i<=4) {
+									if(!empty($row['user_image'])){
+										$user_image =  $row['user_image'];
+									}else{
+										if($row['user_type'] == 1)
+											$user_image = 'male.jpg';
+										else
+											$user_image = 'female.png';	
+									}	?>
+                                    <div class="col-md-3">
+                                        <div class="video-gallery text-center">
+                                            <a href="#">
+                                                <div class="iframe-img" style="height: 125px">
+                                                    <img src="admin/images/<?php echo $user_image?>" height="50" alt="" />
+                                                </div>
+                                                <div class="overlay-icon" style="height: 125px">
+                                                    <i class="fa fa-play-circle-o"></i>
+                                                </div>
+                                            </a>
+                                            <h2><?php echo MemberName($row['user_id']);?></h2>
+                                            <p><?php echo $row['dob'];?></p>
+                                        </div>
+                                    </div>
+									<?php
+								$i++; }
+							?>
+                       </div>
 					</div>
 				</div>
 			</div>

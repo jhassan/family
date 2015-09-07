@@ -1296,6 +1296,4 @@
 		}
 		return $randomString;
 	}
-	
-	
 ?>
