@@ -5,11 +5,11 @@
 					<div class="col-sm-offset-2  col-sm-10">
 						<div class="col-sm-12 pull-left">
 							<?php
-							$SQL = "SELECT * FROM our_family";
+							$SQL = "SELECT * FROM our_family LIMIT 0,5";
 								$results = MySQLQuery($SQL);
 								$row = mysql_fetch_array($results);
 								$i = 1;
-								while ($i<=4) {
+								while ($row = mysql_fetch_array($results)) {
 									if(!empty($row['user_image'])){
 										$user_image =  $row['user_image'];
 									}else{

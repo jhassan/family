@@ -73,6 +73,7 @@
 			
 			$arr = array(
 						'user_name' => $_POST['user_name'],
+						'user_order' => $_POST['user_order'],
 						'user_type' => $_POST['user_type'],
 						'dob' 						=> $_POST['dob'],
 						'death_date' => $_POST['death_date'],
