@@ -3,13 +3,17 @@
 	if(!empty($_GET['id']))
 	{
 	$GetID = mysql_real_escape_string($_GET['id']);	
-	$Where = " about_us_id = '".(int)$GetID."'";
-	$GetRow = GetRecord("about_us", $Where);
-	$title = $GetRow['title'];
-	$slogon = $GetRow['slogon'];
-	$description = $GetRow['description'];
-	$image = $GetRow['image'];
-
+	$Where = " user_id = '".(int)$GetID."'";
+	$GetRow = GetRecord("our_family", $Where);
+	$user_name = $GetRow['user_name'];
+	$user_type = $GetRow['user_type'];
+	$dob = $GetRow['dob'];
+	$death_date = $GetRow['death_date'];
+	$father_id = $GetRow['father_id'];
+	$mother_id = $GetRow['mother_id'];
+	$spous_id = $GetRow['spous_id'];
+	$user_image = $GetRow['user_image'];
+	$user_order =  $GetRow['user_order'];
 	}
 ?>
 
@@ -27,42 +31,75 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add About Us Page </h1>
+                    <h1 class="page-header">Add Family Member</h1>
                 </div>
                 <!-- /.col-lg-12 -->
-           </div>
+            </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            About Us Page
+                            Family Member
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form" action="action.php" id="myForm" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="action" id="action" value="AddAboutUs" />
-                                        <input type="hidden" name="nAboutUsID" id="nAboutUsID" value="<?php echo $GetID; ?>" />
-                                       
-                                        <?php TextField("Title", "title", $title, "50","3","form-control required"); ?>
-                                        <?php TextField("Slogon", "slogon", $slogon, "50","3","form-control required"); ?>
-
-                                        <?php TextArea("Description", "aboutus-des", $description , "5", "30");?>
+                                    <form role="form" action="action.php" id="myForm" method="post">
+                                    <input type="hidden" name="action" id="action" value="AddUser" />
+						            																		<input type="hidden" name="nUserID" id="nUserID" value="<?php echo $GetID; ?>" />
+                                        <?php TextField("Name", "user_name", $user_name, "50","3","form-control required"); ?>
+                                        <div class="form-group col-lg-3">
+                                        <label>Select Gender</label>
+																																								<?php ArrayComboBox("user_type", $user_type, $arrGender, true, "", "---Select Gender---", "required form-control", "");?>
+                                        </div>
+                                        <div class="clear m-t-10 hide"></div>
+																																								<?php TextField("DOB", "dob", $dob, "16","3","form-control datepicker_new");
+																																														TextField("Death", "death_date", $death_date, "16","3","form-control datepicker_new");
+                                        
+                                        ?>
                                         <div class="clear"></div>
-                                            <div class="form-group m-r-15 m-t-10 col-lg-3 p-l-0">
-                                                <label>Upload Image</label>
-                                                <input type="file" name="fileToUpload" id="fileToUpload" class="">
-                                            </div>
+                                        <div class="form-group col-lg-3">
+                                            <label>Mother</label>
+																																												<?php TableComboMsSql("our_family", "user_name", "user_id", "user_type = 2", "mother_id", $mother_id, "", "<option value=''>---Select Mother---</option>", "form-control", ""); ?>
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label>Father</label>
+																																												<?php TableComboMsSql("our_family", "user_name", "user_id", "user_type = 1", "father_id", $father_id, "", "<option value=''>---Select Father---</option>", "form-control", ""); ?>
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label>Spous</label>
+																																												<?php TableComboMsSql("our_family", "user_name", "user_id", "", "spous_id", $spous_id, "", "<option value=''>---Select Spous---</option>", "form-control", ""); ?>
+                                        </div>
+
+                                        <div class="form-group col-lg-3">
+                                            <label>User Order</label>
+                                            <select name="user_order" id="user_order" class="form-control">
+                                            	<option>---Select Number---</option>
+												<?php 
+													for ($i=1; $i<=15; $i++){
+														if($user_order == $i)
+															echo "<option selected value=\"$i\">$i</option>\n";
+														else
+															echo "<option value=\"$i\">$i</option>\n";
+													}
+												?>
+                                            </select>
+                                                                                                                                                                                </div>
+
+                                        <div class="form-group m-r-15 m-t-10 col-lg-3">
+                                            <label>Upload Image</label>
+                                            <input type="file" name="fileToUpload" id="fileToUpload" class="">
+                                        </div>
+                                        <div class="clear"></div>
                                         <div class="form-group col-lg-4 m-t-10">
-                                        	<?php if(!empty($GetID) && !empty($image)) {  ?>
-                                            <img src="admin/images/<?php echo $image;?>" height="25" width="70" alt="Image">
+                                        	<?php if(!empty($GetID) && !empty($user_image)) {  ?>
+                                            <img src="images/<?php echo $user_image;?>" height="25" width="70" alt="Air Line">
                                             <?php } ?>
                                         </div>
-											
-                                            <div class="clear"></div>
+                                        <div class="clear"></div>
                                         <div class="form-group col-lg-6">
-	                                        <button type="submit" class="btn btn-default m-t-10">Save</button>
+                                        <button type="submit" class="btn btn-default m-t-10">Save</button>
                                         </div>
                                     </form>
                                 </div>
