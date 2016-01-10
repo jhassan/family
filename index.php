@@ -40,82 +40,92 @@
 		<div class="container">
 			<div class="row">
 				<?php require_once('left_side_bar.php');?>
+    <script type="text/javascript">
+				$(document).ready(function() {
+					$("#results" ).load( "ajax_index.php?lang=<?php echo $lang;?>"); //load initial records
+					
+					//executes code below when user click on pagination_1 links
+					$("#results").on( "click", ".pagination_1 a", function (e){
+						e.preventDefault();
+						$(".loading-div").show(); //show loading element
+						var page = $(this).attr("data-page"); //get page number from link
+						$("#results").load("ajax_index.php?lang=<?php echo $lang;?>",{"page":page}, function(){ //get content from PHP page
+							$(".loading-div").hide(); //once done, hide loading element
+						});
+						
+					});
+				});
+</script>
+<style>
+body,td,th {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #333;
+}
+.contents{
+	margin: 20px;
+	padding: 20px;
+	list-style: none;
+	background: #F9F9F9;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+.contents li{
+    margin-bottom: 10px;
+}
+.loading-div{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.56);
+	z-index: 999;
+	display:none;
+}
+.loading-div img {
+	margin-top: 20%;
+	margin-left: 50%;
+}
+
+/* pagination_1 style */
+.pagination_1{margin:0;padding:0;}
+.pagination_1 li{
+	display: inline;
+	padding: 6px 10px 6px 10px;
+	border: 1px solid #ddd;
+	margin-right: -1px;
+	font: 15px/20px Arial, Helvetica, sans-serif;
+	background: #FFFFFF;
+	box-shadow: inset 1px 1px 5px #F4F4F4;
+}
+.pagination_1 li a{
+    text-decoration:none;
+    color: rgb(89, 141, 235);
+}
+.pagination_1 li.first {
+    border-radius: 5px 0px 0px 5px;
+}
+.pagination_1 li.last {
+    border-radius: 0px 5px 5px 0px;
+}
+.pagination_1 li:hover{
+	background: #CFF;
+}
+.pagination_1 li.active{
+	background: #F0F0F0;
+	color: #333;
+}
+</style>
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Family Members</h2>
-
-     
-     <?php
-     			$page = (int)(!isset($_GET["page"]) ? 1 : $_GET["page"]);
-								if ($page <= 0) $page = 1;
-								
-								$per_page = 9; // Set how many records do you want to display per page.
-								
-								$startpoint = ($page * $per_page) - $per_page;
-								
-								$statement = "our_family ORDER BY `user_id` ASC"; // Change `records` according to your table name.
-									
-								//$results = mysqli_query($conDB,"SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}");
-								
-								$SQL = "SELECT * FROM {$statement} LIMIT {$startpoint} , {$per_page}";
-								$results = MySQLQuery($SQL);
-								$i = 1;
-								
-								if (mysql_num_rows($results) != 0) {
-												
-									// displaying records.
-												while ($row = mysql_fetch_array($results)) {
-												if(!empty($row['user_image'])){
-												$user_image =  $row['user_image'];
-											}else{
-												if($row['user_type'] == 1)
-													$user_image = 'male.jpg';
-												else
-													$user_image = 'female.png';	
-											}	?>											
-												<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="admin/images/<?php echo $user_image; ?>" alt="" height="250" />
-											<h2><?php echo MemberName($row['user_id']);?></h2>
-											<p><?php echo MemberName($row['father_id']);?></p>
-								           <p><?php echo MemberName($row['mother_id']);?></p>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-           	<h2>Shop Name</h2>
-												<p>Easy Polo Black Edition Easy Polo Black Edition Easy Polo Black Edition Easy Polo Black Edition Easy Polo Black Edition Easy Polo Black Edition</p>
-											</div>
-										</div>
-								</div>
-							</div>
-						</div>
-						<?php if($i%3 == 0) {?>
-     <div class="clearfix"></div>
-     
-     <?php } $i++;
-												} // end while
-									
-								} else {
-													echo "No records are found.";
-								}
-								
-									// displaying paginaiton.
-								echo pagination($statement,$per_page,$page,$url='index?');
-					
-					?>
-
-						
-						
-						
-						
-						
+					<div class="loading-div"><img src="images/ajax-loader.gif" ></div>
+ 			<div id="results"><!-- content will be loaded here --></div>
 					</div><!--features_items-->
 					
-					<?php require_once("bottom_slider.php");?>
-					
+					<?php //require_once("bottom_slider.php");?>
+					</div>
 				</div>
 			</div>
 		</div>

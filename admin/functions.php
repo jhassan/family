@@ -176,6 +176,7 @@
 
 		// execute query
 		//echo $strQuery;
+		mysql_query ("set character_set_results='utf8'"); 
 		MySQLQuery($strQuery);
 		//echo $strQuery . "<br>";
 		
@@ -191,6 +192,7 @@
 	//
 	function GetRecord($strTable, $strCriteria)
 	{
+		mysql_query ("set character_set_results='utf8'");
 		$strQuery = "select * from $strTable ";
 
 		if(!empty($strCriteria))
@@ -1295,5 +1297,118 @@
 			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
 		return $randomString;
+	}
+	
+	// Upload Image
+
+	function UploadImage($fileName, $fileTempName, $folderName)
+	{
+
+		$random_no = generateRandomString(5);
+
+			$target_dir = "$folderName/";
+
+			$target_file = $target_dir . basename($random_no.$fileName);
+
+			$uploadOk = 1;
+
+			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+			// Check if image file is a actual image or fake image
+
+			if(isset($_POST["submit"])) {
+
+				$check = getimagesize($fileTempName);
+
+				if($check !== false) {
+
+					echo "File is an image - " . $check["mime"] . ".";
+
+					$uploadOk = 1;
+
+				} else {
+
+					echo "File is not an image.";
+
+					$uploadOk = 0;
+
+					die;
+
+				}
+
+			}
+
+			
+
+			// Check if file already exists
+
+			if (file_exists($target_file)) {
+
+				echo "Sorry, file already exists.";
+
+				$uploadOk = 0;
+
+				die;
+
+			}
+
+			// Check file size
+
+			if ($_FILES["fileToUpload"]["size"] > 50000000) {
+
+				echo "Sorry, your file is too large.";
+
+				$uploadOk = 0;
+
+				die;
+
+			}
+
+			// Allow certain file formats
+
+			/*if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+
+			&& $imageFileType != "gif" ) {
+
+				echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+
+				$uploadOk = 0;
+
+				die;
+
+			}*/
+
+			// Check if $uploadOk is set to 0 by an error
+
+			if ($uploadOk == 0) {
+
+				echo "Sorry, your file was not uploaded.";
+
+				die;
+
+			// if everything is ok, try to upload file
+
+			} else {
+
+				if (move_uploaded_file($fileTempName, $target_file)) {
+
+					$_POST['fileToUpload'] = $random_no.$fileName;
+
+					$n = 1;
+
+				} else {
+
+					echo "Sorry, there was an error uploading your file.";
+
+					$n = 0;
+
+					die;
+
+				}
+
+			}
+
+			return $_POST['fileToUpload'];	
+
 	}
 ?>

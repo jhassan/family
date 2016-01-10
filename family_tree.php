@@ -4,65 +4,137 @@
 		<div id="contact-page" class="container">
     	<div class="bg">
 	    	<div class="row">    		
-	    		<div class="col-sm-12" style="width: 150% !important;">    			   			
+	    		<div class="col-sm-12" style="width: 300% !important;">    			   			
 					<h2 class="title text-center">Family <strong>Tree</strong></h2>    			    				    				
 					<div class="contact-map">
 								<div class="tree" align="left">
 	<ul>
 		<li>
-			<a href="#">Parent</a>
+			<!-- Mian Barkudar -->
+			<?php TreeMember(19);?>
 			<ul>
 				<li>
-					<a href="#">Child1</a>
-     <a href="#">Child11</a>
+					<!-- Hafiz Wahid Baksh -->
+					<?php TreeMember(20);?>
 					<ul>
 						<li>
-							<a href="#">Grand Child</a>
+							<!-- Haji Ahmad Hassan -->
+							<?php TreeMember(4);?>
+       <ul>
+								<li>
+        <!-- Doctar Isfaq Ahmad Ansari -->
+        <?php TreeMember(7);?>
+        <ul>
+								<li>
+        <!-- Sara Hammad -->
+        <?php TreeMember(11);?>
+								</li>
+        <li>
+        <!-- Farha -->
+        <?php TreeMember(68);?>
+        </li>
+        <li>
+        <!-- Aamrah  -->
+        <?php TreeMember(69);?>
+        </li>
+        <li>
+        <!-- Ehtishm -->
+        <?php TreeMember(64);?>
+        </li>
+        <li>
+        <!-- usama -->
+        <?php TreeMember(72);?>
+        </li>
+        <li>
+        <!-- Muzna -->
+        <?php TreeMember(73);?>
+        </li>
+							</ul>
+								</li>
+								<li>
+        <!-- Muhammad Siddiq Ansari -->
+        <?php TreeMember(2);?>
+       <ul>
+        <li>
+        <!-- Hammad Hassan  -->
+        <?php TreeMember(10);?>
+        </li>
+        <li>
+        <!-- Jawad Hassan -->
+        <?php TreeMember(1);?>
+        </li>
+        <li>
+        <!-- Fawad Hassan -->
+        <?php TreeMember(13);?>
+        </li>
+        <li>
+        <!-- Muhammad Awais -->
+        <?php TreeMember(14);?>
+        </li>
+        <li>
+        <!-- Misbah Amjad -->
+        <?php TreeMember(58);?>
+        </li>
+        <li>
+        <!--Sidra Ahsan  -->
+        <?php TreeMember(15);?>
+        </li>
+       </ul>
+								</li>
+								<li>
+        <!-- Asif Ansari -->
+        <?php TreeMember(8);?>
+        <ul>
+        	<li>
+        <!-- Ahsan -->
+        <?php TreeMember(16);?>
+        </li>
+        <li>
+        <!-- Aisha  -->
+        <?php TreeMember(74);?>
+        </li>
+        </ul>
+								</li>
+        <li>
+        <!-- Tasleem Bibi -->
+        <?php TreeMember(62);?>
+								</li>
+        <li>
+        <!-- Najma -->
+        <?php TreeMember(99);?>
+        </li>
+        <li>
+        <!-- Mamona -->
+        <?php TreeMember(93);?>
+        </li>
+        <li>
+        <!-- Farzana -->
+        <?php TreeMember(77);?>
+        </li>
+        <li>
+        <!-- Nasreen -->
+        <?php TreeMember(104);?>
+        </li>
+        <li>
+        <!-- Farazia -->
+        <?php TreeMember(105);?>
+        </li>
+        
+        
+        
+							</ul>
 						</li>
        <li>
-							<a href="#">Grand Child 1</a>
+							<!-- Munshi Hussain Baksh -->
+							<?php TreeMember(22);?>
 						</li>
 					</ul>
 				</li>
     <li>
-					<a href="#">Child2</a>
-					<ul>
-						<li>
-							<a href="#">Grand Child</a>
-						</li>
-                        <li>
-							<a href="#">Grand Child 1</a>
-						</li>
-					</ul>
+					<!-- Hafiz Allah Baksh -->
+					<?php TreeMember(21);?>
 				</li>
-				<li>
-					<a href="#">Child3</a>
-					<ul>
-						<li><a href="#">Grand Child</a></li>
-                        <li><a href="#">Grand Child</a></li>
-						<li>
-							<a href="#">Grand Child</a>
-							<ul>
-								<li>
-									<a href="#">Great Grand Child</a>
-								</li>
-								<li>
-									<a href="#">Great Grand Child</a>
-								</li>
-								<li>
-									<a href="#">Great Grand Child</a>
-								</li>
-                                <li>
-									<a href="#">Great Grand Child</a>
-								</li>
-                                <li>
-									<a href="#">Great Grand Child</a>
-								</li>
-							</ul>
-						</li>
-						<li><a href="#">Grand Child</a></li>
-					</ul>
-				</li>
+
 			</ul>
 		</li>
 	</ul>

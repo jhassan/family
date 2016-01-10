@@ -22,6 +22,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <script type="text/javascript" src="js/jquery.js"></script>
     <style type="text/css">
 
 /* For pagination function. */
@@ -45,9 +46,21 @@ ul.pagination a.current {
     background:#FE980F;
     color:#fff;
 }
+.clear{ clear:both !important;}
+.urdu_font{ font-size: 18px !important; }
 </style>
 </head><!--/head-->
-
+<?php
+if(!empty($_GET['lang']) && $_GET['lang'] == 'ur')
+{
+	$lang = 'ur';
+	$class_font = "urdu_font";
+}
+else
+{
+		$lang = 'en';
+}
+?>
 <body>
 	<header id="header"><!--header-->
 		<div class="header-middle"><!--header-middle-->
@@ -55,7 +68,7 @@ ul.pagination a.current {
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<h2><a href="index">Family</a></h2>
+							<h2><a href="index?lang=<?php echo $lang;?>">Family</a></h2>
 						</div>
 					</div>
 				</div>
@@ -74,11 +87,26 @@ ul.pagination a.current {
 								<span class="icon-bar"></span>
 							</button>
 						</div>
+      <?php $page = $_SERVER['PHP_SELF'];
+													$page = explode("/",$page);
+													$page = preg_replace('/\\.[^.\\s]{3,4}$/', '', $page[2]);
+													if(!empty($_GET['id']))
+														$page = $page."?id=".$_GET['id'];
+															
+													
+						?>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index" class="active">Home</a></li>
-                                <li><a href="family_members">Family Members</a></li>
-                                <li><a href="family_tree">Family Tree</a></li>
+								<li><a href="index?lang=<?php echo $lang;?>" class="active">Home</a></li>
+        <li><a href="family_members?lang=<?php echo $lang;?>">Family Members</a></li>
+        <li><a href="family_tree?lang=<?php echo $lang;?>">Family Tree</a></li>
+        <?php if(empty($_GET['id'])){ ?>
+        <li><a href="<?php echo $page;?>?lang=ur">Urdu</a></li>
+        <li><a href="<?php echo $page;?>?lang=en">Eng</a></li>
+        <?php } else { ?>
+        <li><a href="<?php echo $page;?>&lang=ur">Urdu</a></li>
+        <li><a href="<?php echo $page;?>&lang=en">Eng</a></li>        
+        <?php }?>
 							</ul>
 						</div>
 					</div>
